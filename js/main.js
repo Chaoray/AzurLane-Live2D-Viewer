@@ -48,5 +48,5 @@ model.once('load', () => {
     requestAnimationFrame(tick);
 })();
 
-loadBackground("../" + config.background);
+loadBackground(config.background);
 setBlur(config.blur);
