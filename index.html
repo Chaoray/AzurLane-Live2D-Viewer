@@ -3,12 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AzurLane Live2D Viewer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
+    <title>Azur Lane Live2D Viewer v.592</title>
 </head>
 
 <body>
-    <div id="background" class="fullscreen"></div>
+    <div id="selector-container">
+        <select id="model-select" class="selector"></select>
+        <select id="bg-select" class="selector"></select>
+    </div>
+    <div id="bg" class="fullscreen"></div>
     <canvas id="canvas" class="fullscreen"></canvas>
 
     <!-- Scripts -->

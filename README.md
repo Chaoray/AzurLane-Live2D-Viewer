@@ -2,7 +2,7 @@
 實現碧藍L2D開場動畫、觸摸動畫  
 藉由config.js設定l2d  
 
-convert.py用法:  
+model3_convert.py用法:  
 轉換拆包出來的model3.json  
 重命名、組織motions以及增加3個hitarea(Head, Body, Special)  
 

@@ -5,48 +5,45 @@ const app = new PIXI.Application({
     backgroundAlpha: 0
 });
 
-const model = PIXI.live2d.Live2DModel.fromSync(
-    config.character,
-    {
-        idleMotionGroup: 'idle'
-    });
+loadModel(config.default_model);
+loadBackground(config.default_background);
+setBlur(config.blur);
 
 window.onresize = (e) => {
     if (!window.model) return;
-    model.scale.set(1);
-    model.scale.set(window.innerWidth / model.width);
-    model.y = (window.innerHeight - model.height) / 2
-    // if (model.x < 0) setTimeout(() => window.onresize(), 1000); // for full height show
+
+    window.model.scale.set(1);
+    const scaleX = window.innerWidth / window.model.width;
+    const scaleY = window.innerHeight / window.model.height;
+    window.model.scale.set(Math.min(scaleX, scaleY));
+    window.model.x = (window.innerWidth - window.model.width) / 2;
+    window.model.y = (window.innerHeight - window.model.height) / 2;
 };
 
-model.once('load', () => {
-    app.stage.addChild(model);
-    window.model = model;
-    window.onresize();
-
-    model.on('hit', (hitAreaNames) => {
-        if (hitAreaNames.includes('Special')) {
-            model.motion('touch_special', 0, PIXI.live2d.MotionPriority.NORMAL);
-        } else if (hitAreaNames.includes('Head')) {
-            model.motion('touch_head', 0, PIXI.live2d.MotionPriority.NORMAL);
-        } else if (hitAreaNames.includes('Body')) {
-            model.motion('touch_body', 0, PIXI.live2d.MotionPriority.NORMAL);
-        }
-    });
-
-    app.view.addEventListener('mouseup', (e) => {
-        model.motion(`main_${Math.floor(Math.random() * 3) + 1}`, 0, PIXI.live2d.MotionPriority.NORMAL);
-    });
-
-    model.motion("login", 0, PIXI.live2d.MotionPriority.FORCE);
+app.view.addEventListener('mouseup', () => {
+    if (!window.model) return;
+    window.model.motion(`main_${Math.floor(Math.random() * 3) + 1}`, 0, PIXI.live2d.MotionPriority.NORMAL);
 });
 
 (function tick() {
-    if (!model) return requestAnimationFrame(tick);
-    if (!model.internalModel) return requestAnimationFrame(tick);
-    if (!model.internalModel.motionManager.playing) model.motion('idle', 0, PIXI.live2d.MotionPriority.IDLE);
+    if (!window.model) return requestAnimationFrame(tick);
+    if (!window.model.internalModel) return requestAnimationFrame(tick);
+    if (!window.model.internalModel.motionManager.playing) window.model.motion('idle', 0, PIXI.live2d.MotionPriority.IDLE);
     requestAnimationFrame(tick);
 })();
 
-loadBackground(config.background);
-setBlur(config.blur);
+let model_selector = document.getElementById('model-select');
+for (let i = 0; i < data.models.length; i++) {
+    model_selector.options.add(new Option(data.models[i], data.models[i], false, false));
+}
+model_selector.onchange = (e) => {
+    loadModel(`../assets/${e.target.value}/${e.target.value}.model3.json`);
+};
+
+let bg_selector = document.getElementById('bg-select');
+for (let i = 0; i < data.backgrounds.length; i++) {
+    bg_selector.options.add(new Option(data.backgrounds[i], data.backgrounds[i], false, false));
+}
+bg_selector.onchange = (e) => {
+    loadBackground(`../bg/${e.target.value}`);
+};
