@@ -5,6 +5,8 @@ if (cookie === "") {
         bg: config.default_background
     }
     saveCookie(cookie);
+} else {
+    cookie = JSON.parse(cookie);
 }
 
 function saveCookie(c) {
