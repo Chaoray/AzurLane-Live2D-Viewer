@@ -37,7 +37,7 @@ for (let i = 0; i < data.models.length; i++) {
     model_selector.options.add(new Option(data.models[i], data.models[i], false, false));
 }
 model_selector.onchange = (e) => {
-    loadModel(`../assets/${e.target.value}/${e.target.value}.model3.json`);
+    loadModel(`assets/${e.target.value}/${e.target.value}.model3.json`);
 };
 
 let bg_selector = document.getElementById('bg-select');
@@ -45,5 +45,5 @@ for (let i = 0; i < data.backgrounds.length; i++) {
     bg_selector.options.add(new Option(data.backgrounds[i], data.backgrounds[i], false, false));
 }
 bg_selector.onchange = (e) => {
-    loadBackground(`../bg/${e.target.value}`);
+    loadBackground(`bg/${e.target.value}`);
 };
