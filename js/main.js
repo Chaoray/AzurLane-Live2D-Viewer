@@ -5,8 +5,8 @@ const app = new PIXI.Application({
     backgroundAlpha: 0
 });
 
-loadModel(config.default_model);
-loadBackground(config.default_background);
+loadModel(cookie.model);
+loadBackground(cookie.bg);
 setBlur(config.blur);
 
 window.onresize = (e) => {
@@ -38,6 +38,8 @@ for (let i = 0; i < data.models.length; i++) {
 }
 model_selector.onchange = (e) => {
     loadModel(`assets/${e.target.value}/${e.target.value}.model3.json`);
+    cookie.model = `assets/${e.target.value}/${e.target.value}.model3.json`;
+    saveCookie(cookie);
 };
 
 let bg_selector = document.getElementById('bg-select');
@@ -46,4 +48,6 @@ for (let i = 0; i < data.backgrounds.length; i++) {
 }
 bg_selector.onchange = (e) => {
     loadBackground(`bg/${e.target.value}`);
+    cookie.bg = `bg/${e.target.value}`;
+    saveCookie(cookie);
 };
