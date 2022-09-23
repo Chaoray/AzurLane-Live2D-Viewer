@@ -1,4 +1,4 @@
-# AzurLane-Live2D-Viewer-Covert
+# AzurLane-Live2D-Viewer
 實現碧藍L2D開場動畫、觸摸動畫  
 藉由config.js設定l2d  
 
