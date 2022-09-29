@@ -17,7 +17,7 @@ const data = {
         'pinghai_4', 'pinghai_6', 'qianwei_2', 'qibolin_2', 'qiye_7', 'rangbaer_3', 'rangbaer_4', 'shengluyisi_3', 'shengluyisi_4',
         'shitelasai_2', 'sipeibojue_5', 'taiyuan_2', 'tianlangxing_3', 'tierbici_2', 'weineituo_2', 'weixi_2', 'weiyan_2', 'weiyan_4',
         'wuerlixi_2', 'wuqi_2', 'xianghe_2', 'xixuegui_4', 'xuefeng_3', 'xukufu_2', 'xukufu_3', 'yichui_2', 'yilishabai_6', 'z46_2',
-        'z46_3', 'z46_4', 'zhala_2'
+        'z46_3', 'z46_4', 'zhala_2', 'baerdimo_6', 'xinnong_3'
     ],
     backgrounds: [
         'star_level_bg_100.png', 'star_level_bg_101.png', 'star_level_bg_102.png', 'star_level_bg_103.png', 'star_level_bg_104.png',
