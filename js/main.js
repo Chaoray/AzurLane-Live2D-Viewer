@@ -5,12 +5,17 @@ const hitAreaFrames = new PIXI.live2d.HitAreaFrames();
 hitAreaFrames.visible = false;
 let cookie = loadCookie();
 
-(function main() {    
+let loadingBackground = [];
+fetchFilesInDir("loadingbg").then((res) => {
+    loadingBackground = res;
+}).catch((err) => loadingBackground = []);
+
+(function main() {
     initPIXIApplication();
     loadModelToPIXI(cookie.cache.model);
-    
+
     setBackground(cookie.cache.bg);
-    
+
     initControls();
     initWindowEvent();
     onFrameUpdate();
@@ -48,6 +53,9 @@ function loadModelToPIXI(path) {
     if (window.model) window.app.stage.removeChild(window.model);
 
     $('#loading').style.visibility = 'visible';
+    if (loadingBackground.length != 0) {
+        $('#loading').style.backgroundImage = `url("${randomValue(loadingBackground).path}")`;
+    }
     let model = PIXI.live2d.Live2DModel.fromSync(path);
 
     model.once('load', () => {
@@ -56,6 +64,7 @@ function loadModelToPIXI(path) {
         window.onresize();
 
         model.on('hit', (hitAreas) => {
+            console.log(`Hit ${hitAreas[0]}`)
             model.motion(hitAreas[0], 0, PIXI.live2d.MotionPriority.NORMAL);
         });
 
@@ -167,7 +176,7 @@ async function initControls() {
 
 async function initModelSelector() {
     let modelSelector = $('#model-select');
-    let models = await fetchFilesInDir('assets');
+    let models = await fetchFilesInDir('live2d');
     for (let i = 0; i < models.length; i++) {
         let option = new Option(models[i].name, i, false, false);
         if (cookie.cache.model.includes(models[i].name)) {
@@ -240,4 +249,8 @@ async function initBackgroundDisplay() {
 
         displayContainer.appendChild(img);
     }
+}
+
+function randomValue(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
 }

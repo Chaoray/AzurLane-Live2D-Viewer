@@ -71,6 +71,9 @@ body {
 
     font-size: 5em;
     visibility: hidden;
+    
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .background-item {
