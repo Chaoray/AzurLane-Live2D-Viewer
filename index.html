@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Azur Lane Live2D Viewer v.677</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="某個讓你舔婆的地方&#10;Somewhere allows you to lick your wives"/>
+    <meta name="keywords" content="AzurLane,Live2D,L2D,PIXI.js"/>
+    <meta property="og:title" content="Azur Lane Live2D Viewer v.637"/>
+    <meta property="og:description" content="某個讓你舔婆的地方&#10;Somewhere allows you to lick your wives"/>
+    <link rel="canonical" href="https://chaoray.github.io/AzurLane-Live2D-Viewer/"/>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/lib/live2dcubismcore.min.js"></script>
+    <script src="js/lib/live2d.min.js"></script>
+    <script src="js/lib/pixi.min.js"></script>
+    <script src="js/lib/extra.min.js"></script>
+    <script src="js/lib/index.min.js"></script>
+    <script src="js/lib/js.cookie.min.js"></script>
+</head>
+
+<body>
+    <div class="flex-column">
+        <select id="model-select" class="control" title="Models"></select>
+        <button id="bg-select" class="control">Select Background</button>
+        <div class="flex-row">
+            <input type="checkbox" id="show-hitareas" class="control">
+            <label for="show-hitareas" class="control text">Show HitAreas</label>
+        </div>
+            <div id="motion-container" class="control"></div>
+    </div>
+    <div id="bg" class="fullscreen blur"></div>
+    <div id="loading" class="fullscreen"><p class="text">Loading...</p></div>
+    <canvas id="canvas" class="fullscreen"></canvas>
+
+    <div id="background-display"></div>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
