@@ -8,6 +8,9 @@ let cookie = loadCookie();
 let loadingBackground = [];
 fetchFilesInDir("loadingbg").then((res) => {
     loadingBackground = res;
+    for (let bg of res) {
+        preloadImage(bg.path);
+    }
 }).catch((err) => loadingBackground = []);
 
 (function main() {
@@ -253,4 +256,9 @@ async function initBackgroundDisplay() {
 
 function randomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function preloadImage(url) {
+    let img = new Image();
+    img.src = url;
 }
